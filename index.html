@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Focus & Task Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">🍅</span>
+        <h1>PomoFocus</h1>
+      </div>
+      <div class="header-actions">
+        <button id="soundToggleBtn" class="icon-btn" title="Bật/Tắt âm thanh">
+          <span id="soundIcon">🔔</span>
+        </button>
+        <button id="themeToggleBtn" class="icon-btn" title="Chuyển chế độ Sáng/Tối">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Timer Card -->
+    <main class="timer-card">
+      <!-- Mode Selection Tabs -->
+      <nav class="mode-tabs">
+        <button class="mode-btn active" data-mode="pomodoro" data-time="1500">Tập trung (25p)</button>
+        <button class="mode-btn" data-mode="shortBreak" data-time="300">Nghỉ ngắn (5p)</button>
+        <button class="mode-btn" data-mode="longBreak" data-time="900">Nghỉ dài (15p)</button>
+      </nav>
+
+      <!-- Circular Progress & Display -->
+      <div class="timer-display-wrapper">
+        <svg class="progress-ring" width="280" height="280" viewBox="0 0 280 280">
+          <circle class="progress-ring-track" cx="140" cy="140" r="120" stroke-width="10" />
+          <circle id="progressCircle" class="progress-ring-indicator" cx="140" cy="140" r="120" stroke-width="10" />
+        </svg>
+
+        <div class="timer-content">
+          <span id="timerTime" class="timer-digits">25:00</span>
+          <span id="timerStatus" class="timer-label">Sẵn sàng bắt đầu</span>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="timer-controls">
+        <button id="startPauseBtn" class="btn btn-primary">
+          <span id="startIcon">▶</span>
+          <span id="startText">Bắt đầu</span>
+        </button>
+        <button id="resetBtn" class="btn btn-secondary" title="Đặt lại đồng hồ">
+          <span>↺</span>
+        </button>
+        <button id="skipBtn" class="btn btn-secondary" title="Bỏ qua sang phiên kế tiếp">
+          <span>⏭</span>
+        </button>
+      </div>
+
+      <!-- Stats Summary -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-number" id="cycleCount">0</span>
+          <span class="stat-name">Chu kỳ hôm nay</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" id="focusedMinutes">0</span>
+          <span class="stat-name">Phút tập trung</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Task List Section -->
+    <section class="task-section">
+      <div class="section-header">
+        <h2>Công việc cần làm</h2>
+        <span id="taskStats" class="badge">0/0 hoàn thành</span>
+      </div>
+
+      <form id="taskForm" class="task-input-box">
+        <input 
+          type="text" 
+          id="taskInput" 
+          placeholder="Nhập việc bạn muốn làm trong phiên này..." 
+          autocomplete="off" 
+          required
+        />
+        <button type="submit" class="btn btn-add">Thêm</button>
+      </form>
+
+      <ul id="taskList" class="task-list">
+        <!-- Rendered dynamically via JavaScript -->
+      </ul>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
